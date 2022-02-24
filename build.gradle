@@ -34,12 +34,12 @@ dependencies {
 
 group = "dev.plex"
 version = "0.1-SNAPSHOT"
-description = "Plex's vulnerability / exploit patcher"
+description = "An exploit patcher to help patch server crashing / player crashing / kicking exploits and bugs."
 
 bukkit {
     name = "Blackout"
     version = rootProject.version
-    description = "Plex's vulnerability / exploit patcher"
+    description = rootProject.description
     main = "dev.plex.Blackout"
     website = "https://plex.us.org"
     authors = ["Telesphoreo", "Taah"]
