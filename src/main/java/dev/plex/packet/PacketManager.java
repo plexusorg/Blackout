@@ -31,6 +31,4 @@ public class PacketManager
         });
         return bool.get();
     }
-
-
 }
