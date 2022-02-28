@@ -47,6 +47,4 @@ public class EndermanPotionPatch implements IPacketListener<ClientboundUpdateMob
             event.setCancelled(true);
         }
     }
-
-
 }

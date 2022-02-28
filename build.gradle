@@ -34,7 +34,7 @@ dependencies {
 
 group = "dev.plex"
 version = "0.1-SNAPSHOT"
-description = "An exploit patcher to help patch server crashing / player crashing / kicking exploits and bugs."
+description = "Blackout exploits on your Minecraft server."
 
 bukkit {
     name = "Blackout"
