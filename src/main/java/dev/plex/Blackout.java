@@ -2,10 +2,7 @@ package dev.plex;
 
 import dev.plex.listener.PlayerListener;
 import dev.plex.packet.PacketManager;
-import dev.plex.packet.impl.EndermanPotionPatch;
-import dev.plex.packet.impl.KnowledgeBookPatch;
-import dev.plex.packet.impl.LecternPatch;
-import dev.plex.packet.impl.PaintingPatch;
+import dev.plex.packet.impl.*;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -35,6 +32,7 @@ public class Blackout extends JavaPlugin
         this.packetManager.registerListener(ServerboundUseItemOnPacket.class, new PaintingPatch());
         this.packetManager.registerListener(ServerboundUseItemOnPacket.class, new LecternPatch());
         this.packetManager.registerListener(ServerboundUseItemOnPacket.class, new KnowledgeBookPatch());
+        this.packetManager.registerListener(ServerboundSetCreativeModeSlotPacket.class, new SkullOwnerPatch());
         this.packetManager.registerListener(ClientboundUpdateMobEffectPacket.class, new EndermanPotionPatch());
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
