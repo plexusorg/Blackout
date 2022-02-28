@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -26,8 +27,9 @@ public class SkullOwnerPatch implements IPacketListener<ServerboundSetCreativeMo
         org.bukkit.inventory.ItemStack bukkitItem = event.getCurrentItem();
 
         if (bukkitItem == null) return;
+        if (event.getWhoClicked().getType() != EntityType.PLAYER) return;
 
-        checkItem((Player) event.getWhoClicked(), bukkitItem);
+        checkItem(((CraftPlayer)event.getWhoClicked()).getHandle(), bukkitItem);
     }
 
     @EventHandler
@@ -49,6 +51,7 @@ public class SkullOwnerPatch implements IPacketListener<ServerboundSetCreativeMo
     private boolean checkItem(Player player, org.bukkit.inventory.ItemStack bukkitItem)
     {
         Blackout.debug("Starting skull owner exploit patch...");
+        if (bukkitItem == null) return true;
         ItemStack item = ((CraftItemStack)bukkitItem).handle;
         if (item.getBukkitStack().getType() != Material.PLAYER_HEAD) return true;
 
