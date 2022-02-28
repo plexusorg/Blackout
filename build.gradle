@@ -45,7 +45,7 @@ bukkit {
     main = "dev.plex.Blackout"
     website = "https://plex.us.org"
     authors = ["Telesphoreo", "Taah"]
-    apiVersion = "1.18"
+    apiVersion = "1.17"
 }
 
 java {
