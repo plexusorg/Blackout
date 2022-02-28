@@ -8,8 +8,8 @@ import net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -37,7 +37,7 @@ public class SkullOwnerPatch implements IPacketListener<ServerboundSetCreativeMo
     {
         if (event.getView().getType() == InventoryType.PLAYER)
         {
-            Blackout.debug("Checking all items...");
+//            Blackout.debug("Checking all items...");
             Arrays.stream(event.getInventory().getContents()).forEach(item -> checkItem(((CraftPlayer)event.getPlayer()).getHandle(), item));
         }
     }
@@ -50,7 +50,7 @@ public class SkullOwnerPatch implements IPacketListener<ServerboundSetCreativeMo
 
     private boolean checkItem(Player player, org.bukkit.inventory.ItemStack bukkitItem)
     {
-        Blackout.debug("Starting skull owner exploit patch...");
+//        Blackout.debug("Starting skull owner exploit patch...");
         if (bukkitItem == null) return true;
         ItemStack item = ((CraftItemStack)bukkitItem).handle;
         if (item.getBukkitStack().getType() != Material.PLAYER_HEAD) return true;

@@ -8,12 +8,13 @@ import net.minecraft.world.item.ItemStack;
 import org.apache.commons.lang3.EnumUtils;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class KnowledgeBookPatch implements IPacketListener<ServerboundUseItemOnPacket>
@@ -47,7 +48,7 @@ public class KnowledgeBookPatch implements IPacketListener<ServerboundUseItemOnP
                     remove.set(true);
                     return;
                 }
-                if (!EnumUtils.isValidEnumIgnoreCase(Material.class, recipe.getAsString().split(":")[1]))
+                if (!EnumUtils.isValidEnum(Material.class, recipe.getAsString().split(":")[1].toUpperCase(Locale.ROOT)))
                 {
                     remove.set(true);
                 }
@@ -89,7 +90,7 @@ public class KnowledgeBookPatch implements IPacketListener<ServerboundUseItemOnP
                     remove.set(true);
                     return;
                 }
-                if (!EnumUtils.isValidEnumIgnoreCase(Material.class, recipe.getAsString().split(":")[1]))
+                if (!EnumUtils.isValidEnum(Material.class, recipe.getAsString().split(":")[1].toUpperCase(Locale.ROOT)))
                 {
                     remove.set(true);
                 }

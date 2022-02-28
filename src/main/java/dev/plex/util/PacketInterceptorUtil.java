@@ -6,7 +6,7 @@ import io.netty.channel.ChannelDuplexHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPipeline;
 import net.minecraft.network.protocol.Packet;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class PacketInterceptorUtil

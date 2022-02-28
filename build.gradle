@@ -24,8 +24,10 @@ repositories {
     mavenCentral()
 }
 
+def paperVersion = "1.17.1"
+
 dependencies {
-    paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.18.1-R0.1-SNAPSHOT")
+    paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:${paperVersion}-R0.1-SNAPSHOT")
 
     library 'org.json:json:20211205'
     library "org.projectlombok:lombok:1.18.22"
@@ -63,7 +65,7 @@ tasks.withType(JavaCompile) {
 }
 
 reobfJar {
-    setArchivesBaseName("Blackout")
+    setArchivesBaseName("Blackout-${paperVersion}")
 }
 
 tasks {
