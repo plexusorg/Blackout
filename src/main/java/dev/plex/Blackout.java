@@ -10,7 +10,8 @@ import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.minecraft.network.protocol.game.*;
+import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
+import net.minecraft.network.protocol.game.ServerboundUseItemOnPacket;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Blackout extends JavaPlugin
@@ -20,6 +21,11 @@ public class Blackout extends JavaPlugin
 
     @Getter
     private PacketManager packetManager;
+
+    public static void debug(String message)
+    {
+        Blackout.getPlugin().getServer().getConsoleSender().sendMessage(Component.text("[Blackout Debug] ").color(NamedTextColor.GOLD).append(LegacyComponentSerializer.legacyAmpersand().deserialize(message)));
+    }
 
     @Override
     public void onLoad()
@@ -38,10 +44,5 @@ public class Blackout extends JavaPlugin
         this.packetManager.registerListener(ClientboundUpdateMobEffectPacket.class, new EndermanPotionPatch());
 
         this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
-    }
-
-    public static void debug(String message)
-    {
-        Blackout.getPlugin().getServer().getConsoleSender().sendMessage(Component.text("[Blackout Debug] ").color(NamedTextColor.GOLD).append(LegacyComponentSerializer.legacyAmpersand().deserialize(message)));
     }
 }
