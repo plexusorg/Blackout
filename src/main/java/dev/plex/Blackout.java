@@ -10,6 +10,8 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket;
 import net.minecraft.network.protocol.game.ServerboundUseItemOnPacket;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Blackout extends JavaPlugin
@@ -17,18 +19,27 @@ public class Blackout extends JavaPlugin
     @Getter
     private static Blackout plugin;
 
+    private static FileConfiguration config;
+
     @Getter
     private PacketManager packetManager;
 
+    private static boolean debugEnabled;
+
     public static void debug(String message)
     {
-        Blackout.getPlugin().getServer().getConsoleSender().sendMessage(Component.text("[Blackout Debug] ").color(NamedTextColor.GOLD).append(LegacyComponentSerializer.legacyAmpersand().deserialize(message)));
+        if (debugEnabled)
+        {
+            Blackout.getPlugin().getServer().getConsoleSender().sendMessage(Component.text("[Blackout Debug] ").color(NamedTextColor.GOLD).append(LegacyComponentSerializer.legacyAmpersand().deserialize(message)));
+        }
     }
 
     @Override
     public void onLoad()
     {
         plugin = this;
+        config = this.getConfig();
+        debugEnabled = config.getBoolean("debug");
         debug("Loading");
     }
 
@@ -41,7 +52,6 @@ public class Blackout extends JavaPlugin
         this.packetManager.registerListener(ServerboundUseItemOnPacket.class, new KnowledgeBookPatch());
         this.packetManager.registerListener(ServerboundSetCreativeModeSlotPacket.class, new SkullOwnerPatch());
         this.packetManager.registerListener(ClientboundUpdateMobEffectPacket.class, new EndermanPotionPatch());
-
         this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
     }
 }
