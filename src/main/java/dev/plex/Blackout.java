@@ -3,6 +3,7 @@ package dev.plex;
 import dev.plex.listener.PlayerListener;
 import dev.plex.packet.PacketManager;
 import dev.plex.packet.impl.*;
+import java.util.List;
 import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -10,6 +11,7 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.minecraft.network.protocol.game.ClientboundUpdateMobEffectPacket;
 import net.minecraft.network.protocol.game.ServerboundSetCreativeModeSlotPacket;
 import net.minecraft.network.protocol.game.ServerboundUseItemOnPacket;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -40,12 +42,12 @@ public class Blackout extends JavaPlugin
         plugin = this;
         config = this.getConfig();
         debugEnabled = config.getBoolean("debug");
-        debug("Loading");
     }
 
     @Override
     public void onEnable()
     {
+        loadConfig();
         this.packetManager = new PacketManager();
         this.packetManager.registerListener(ServerboundUseItemOnPacket.class, new PaintingPatch());
         this.packetManager.registerListener(ServerboundUseItemOnPacket.class, new LecternPatch());
@@ -53,5 +55,14 @@ public class Blackout extends JavaPlugin
         this.packetManager.registerListener(ServerboundSetCreativeModeSlotPacket.class, new SkullOwnerPatch());
         this.packetManager.registerListener(ClientboundUpdateMobEffectPacket.class, new EndermanPotionPatch());
         this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+    }
+
+    private void loadConfig()
+    {
+        config.options().setHeader(List.of("Blackout Configuration"));
+        config.addDefault("debug", false);
+        config.options().copyDefaults(true);
+        saveConfig();
+        Bukkit.getLogger().info("Loaded configuration file");
     }
 }
