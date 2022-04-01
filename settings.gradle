@@ -4,5 +4,5 @@ pluginManagement {
         maven { url("https://papermc.io/repo/repository/maven-public/") }
     }
 }
-rootProject.name = 'blackout'
+rootProject.name = "Blackout"
 

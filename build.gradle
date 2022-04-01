@@ -9,7 +9,6 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     maven {
         url = uri("https://papermc.io/repo/repository/maven-public/")
     }
@@ -26,10 +25,9 @@ repositories {
 
 dependencies {
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.18.2-R0.1-SNAPSHOT")
-
-    library 'org.json:json:20211205'
-    library "org.projectlombok:lombok:1.18.22"
-    annotationProcessor "org.projectlombok:lombok:1.18.22"
+    library("org.json:json:20220320")
+    library("org.projectlombok:lombok:1.18.22")
+    annotationProcessor("org.projectlombok:lombok:1.18.22")
 }
 
 group = "dev.plex"
