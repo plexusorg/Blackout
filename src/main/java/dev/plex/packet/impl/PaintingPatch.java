@@ -15,8 +15,14 @@ public class PaintingPatch implements IPacketListener<ServerboundUseItemOnPacket
     public boolean onReceive(Player player, ServerboundUseItemOnPacket serverboundUseItemOnPacket)
     {
         ItemStack item = player.getItemInHand(serverboundUseItemOnPacket.getHand());
-        if (!item.hasTag()) return true;
-        if (item.getBukkitStack().getType() != Material.PAINTING) return true;
+        if (!item.hasTag())
+        {
+            return true;
+        }
+        if (item.getBukkitStack().getType() != Material.PAINTING)
+        {
+            return true;
+        }
         CompoundTag tag = item.getTag();
 
         assert tag != null;
