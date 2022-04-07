@@ -59,7 +59,7 @@ public class Blackout extends JavaPlugin
 
     private void loadConfig()
     {
-        config.options().setHeader(List.of("Blackout Configuration"));
+        config.options().header("Blackout Configuration");
         config.addDefault("debug", false);
         config.options().copyDefaults(true);
         saveConfig();
