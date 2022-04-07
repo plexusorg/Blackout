@@ -28,7 +28,6 @@ def paperVersion = "1.17.1"
 
 dependencies {
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:${paperVersion}-R0.1-SNAPSHOT")
-
     library 'org.json:json:20211205'
     library "org.projectlombok:lombok:1.18.22"
     annotationProcessor "org.projectlombok:lombok:1.18.22"
